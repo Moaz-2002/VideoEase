@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VideoEase — Download YouTube Videos in Any Quality</title>
+    <meta name="description" content="VideoEase is the fastest, free YouTube video downloader. Download in 4K, 1080p, 720p, 480p, or extract MP3 audio. No registration required.">
+    <meta property="og:title" content="VideoEase — YouTube Downloader">
+    <meta property="og:description" content="Download YouTube videos in any quality, instantly and for free.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <nav class="navbar">
+            <div class="logo">⬇ VideoEase</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#history">History</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- ─── Hero ─── -->
+<section class="hero" id="home">
+    <div class="container">
+        <span class="hero-badge">✦ Free &amp; Open Source</span>
+        <h1>Download Any YouTube Video<br>in Seconds</h1>
+        <p>Paste a URL, pick your quality, and hit download. No ads, no signup, no limits.</p>
+    </div>
+</section>
+
+<!-- ─── Downloader ─── -->
+<div class="downloader-wrap">
+    <div class="container">
+        <div class="downloader">
+
+            <div class="input-group">
+                <button class="paste-btn" id="paste-btn" title="Paste from clipboard">📋</button>
+                <input type="text" id="video-url" placeholder="Paste a YouTube URL here… (or press Enter)" autocomplete="off">
+                <button id="fetch-btn">Fetch Video</button>
+            </div>
+
+            <div class="video-preview" id="video-preview">
+                <div class="video-info">
+                    <div class="thumbnail">
+                        <img id="video-thumbnail" src="/api/placeholder/180/120" alt="Video thumbnail">
+                    </div>
+                    <div class="details">
+                        <h3 id="video-title">Video Title</h3>
+                        <p id="video-author">By: Channel Name</p>
+                        <p id="video-duration">Duration: 00:00</p>
+                        <div class="video-stats">
+                            <span class="stat-badge" id="stat-views">👁 —</span>
+                            <span class="stat-badge" id="stat-likes">👍 —</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="download-options">
+                    <h3>Select Quality</h3>
+                    <div class="quality-options" id="quality-options">
+                        <!-- Populated by JS -->
+                    </div>
+                    <button id="download-btn" disabled>⬇ Download</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ─── Features ─── -->
+<section class="features" id="features">
+    <div class="container">
+        <span class="section-label">Why VideoEase</span>
+        <h2>Everything You Need</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Lightning Fast</h3>
+                <p>Powered by yt-dlp — the fastest YouTube extractor. Downloads start within seconds.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎬</div>
+                <h3>Multiple Formats</h3>
+                <p>From 360p to 4K Ultra HD, or extract audio as a high-quality 192 kbps MP3.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Private &amp; Safe</h3>
+                <p>No account needed. No data stored. Temp files are deleted after download.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Real-Time Progress</h3>
+                <p>Watch your download progress live with speed and time-remaining estimates.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Fully Responsive</h3>
+                <p>Works flawlessly on desktop, tablet, and mobile. Download on any device.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📋</div>
+                <h3>Clipboard Paste</h3>
+                <p>One tap to paste your URL directly from the clipboard — no typing needed.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── How It Works ─── -->
+<section class="how-it-works" id="how-it-works">
+    <div class="container">
+        <span class="section-label">Simple Steps</span>
+        <h2>How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Copy URL</h3>
+                <p>Copy the YouTube video URL from your browser address bar.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Paste &amp; Fetch</h3>
+                <p>Paste the URL and click "Fetch Video" to load available formats.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Pick Quality</h3>
+                <p>Choose from available resolutions or extract audio as MP3.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Download</h3>
+                <p>Hit Download and the file saves directly to your device.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── History ─── -->
+<section class="history-section" id="history">
+    <div class="container">
+        <span class="section-label">Local History</span>
+        <h2>Recent Downloads</h2>
+        <div id="history-list">
+            <div class="history-empty">No downloads yet. Your download history will appear here.</div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── FAQ ─── -->
+<section class="faq-section" id="faq">
+    <div class="container">
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+            <button class="faq-question">Is VideoEase free to use? <span class="faq-arrow">▾</span></button>
+            <div class="faq-answer">Yes, VideoEase is completely free and requires no registration or account of any kind.</div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">What video qualities are available? <span class="faq-arrow">▾</span></button>
+            <div class="faq-answer">VideoEase supports all qualities available for a given video — from 144p up to 4K Ultra HD. Available options are shown dynamically after fetching the video.</div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">Why is the MP3 option missing? <span class="faq-arrow">▾</span></button>
+            <div class="faq-answer">MP3 extraction requires FFmpeg to be installed on the server. If FFmpeg is not detected, the MP3 option is hidden. Install FFmpeg and restart the app to enable it.</div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">Are my downloads stored on the server? <span class="faq-arrow">▾</span></button>
+            <div class="faq-answer">No. Downloaded files are stored in a temporary directory and automatically deleted immediately after they are served to your browser.</div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">Can I download playlists? <span class="faq-arrow">▾</span></button>
+            <div class="faq-answer">Currently, VideoEase supports single video URLs only. Playlist support may be added in a future update.</div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── Footer ─── -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>VideoEase</h3>
+                <p>A fast, free, and private YouTube video downloader. Built with Flask and yt-dlp.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Tech Stack</h3>
+                <ul>
+                    <li><a href="https://flask.palletsprojects.com" target="_blank" rel="noopener">Flask (Python)</a></li>
+                    <li><a href="https://github.com/yt-dlp/yt-dlp" target="_blank" rel="noopener">yt-dlp</a></li>
+                    <li><a href="https://ffmpeg.org" target="_blank" rel="noopener">FFmpeg</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 VideoEase. Built for educational purposes. Respect copyright laws.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- ─── Download Modal ─── -->
+<div class="modal" id="download-modal">
+    <div class="modal-content">
+        <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+        <div class="modal-icon" id="modal-icon">⬇</div>
+        <h3 id="modal-title">Preparing Download…</h3>
+        <p id="modal-subtitle">Please wait while we process your video.</p>
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="progress-info">
+                <span id="progress-text">0%</span>
+                <span id="progress-eta"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ─── Toast Container ─── -->
+<div id="toast-container"></div>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
