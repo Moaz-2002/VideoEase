@@ -3,6 +3,8 @@ import os
 import time
 from ytdlp_utils import YTDLPHelper
 
+DEBUG = os.environ.get('DEBUG', '0') == '1'
+
 app = Flask(__name__)
 
 # Initialize YTDLPHelper
@@ -160,4 +162,6 @@ def setup():
 if __name__ == "__main__":
     with app.app_context():
         setup()
-    app.run(debug=True)
+    # Set DEBUG=1 in your environment for local development.
+    # Never run with debug=True on a public-facing server.
+    app.run(debug=DEBUG)
